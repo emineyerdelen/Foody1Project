@@ -1,4 +1,5 @@
 ﻿using FoodyProject.EntityLayer.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FoodyProject.DataAccessLayer.Concrete
 {
-    public class FoodyContext :DbContext
+    public class FoodyContext :IdentityDbContext<AppUser,AppRole,int>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

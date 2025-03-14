@@ -1,0 +1,47 @@
+﻿@model CreateBlogDto
+@{
+    ViewData["Title"] = "CreateBlog";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Blog İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post">
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">Yeni Blog Girişi</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="blogtitle">Blog Başlığını Giriniz</label>
+								<input type="text" class="form-control" asp-for="BlogTitle" id="blogtitle">
+							</div>
+							<div class="form-group">
+								<label for="blogcontent">Blog İçeriğini Giriniz</label>
+								<textarea rows="5" class="form-control" asp-for="BlogContent" id="blogcontent"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="blogauthor">Blog Yazarını Giriniz</label>
+								<input type="text" class="form-control" asp-for="BlogAuthor" id="blogauthor">
+							</div>
+							<div class="form-group">
+								<label for="blogdate">Blog Tarihini Giriniz</label>
+								<input type="date" class="form-control" asp-for="BlogDate" id="blogdate">
+							</div>
+							<div class="form-group">
+								<label for="blogımageurl">Blog Görselini Giriniz</label>
+								<input type="text" class="form-control" asp-for="BlogImageUrl" id="blogımageurl">
+							</div>
+						</div>
+						<div class="card-action">
+							<button class="btn btn-primary">Blog Ekle</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+

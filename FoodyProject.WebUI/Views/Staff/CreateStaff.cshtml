@@ -1,0 +1,35 @@
+﻿@model CreateStaffDto
+@{
+    ViewData["Title"] = "CreateStaff";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Personel İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post">
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">Yeni Personel Girişi</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="Name">Personel Adını Giriniz</label>
+								<input type="text" class="form-control" asp-for="Name" id="Name">
+							</div>
+							<div class="form-group">
+								<label for="Title">Personel Başlığını Giriniz</label>
+								<input type="text" class="form-control" asp-for="Title" id="Title">
+							</div>
+						</div>
+						<div class="card-action">
+							<button class="btn btn-primary">Personeli Ekle</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+

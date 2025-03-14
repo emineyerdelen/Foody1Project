@@ -1,0 +1,53 @@
+﻿@model List<ResultBlogDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">	Blog İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Blog Listesi</div>
+					</div>
+					<div class="card-body">
+						<div class="card-sub">
+							Blog ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz
+						</div>
+						<table class="table mt-3">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Blog Başlığı</th>
+									<th scope="col">Durum</th>
+									<th scope="col">Sil</th>
+									<th scope="col">Güncelle</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>@item.BlogID</td>
+										<td>@item.BlogTitle</td>
+										<td>@item.BlogAuthor</td>
+										<td>@item.BlogContent</td>
+										<td>@item.BlogDate</td>
+										<td>@item.BlogImageUrl</td>
+										<td><a href="/Blog/DeleteBlog/@item.BlogID" class="btn btn-outline-danger">Sil</a></td>
+										<td><a href="/bLOG/UpdateBlog/@item.BlogID" class="btn btn-outline-warning">Güncelle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+						<a href="/Blog/CreateBlog" class="btn btn-outline-primary">Yeni Blog Girişi</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

@@ -1,7 +1,13 @@
+using FoodyProject.DataAccessLayer.Concrete;
+using FoodyProject.EntityLayer.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
+builder.Services.AddDbContext<FoodyContext>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<FoodyContext>();
 
 var app = builder.Build();
 
