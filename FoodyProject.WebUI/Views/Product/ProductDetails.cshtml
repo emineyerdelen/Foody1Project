@@ -1,0 +1,31 @@
+﻿@model ResultProductDto
+@{
+    ViewData["Title"] = "ProductDetails";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card shadow-lg border-0 p-5">
+                <h1 class="text-center text-dark fw-bold mb-4">@Model.ProductName</h1>
+
+                <div class="text-center">
+                    <img src="@Model.ImageUrl" class="img-fluid rounded shadow-sm mb-4"
+                         alt="Blog Resmi" style="max-width: 60%; height: auto;">
+                </div>
+                <p class="fs-5" style="line-height: 1.8; color: #333; text-align: justify;">
+                    @Model.Description
+                </p>
+                <!-- Ana Sayfa Butonu -->
+                <div class="text-center mt-4">
+                    <a asp-controller="Default" asp-action="Index" class="btn btn-lg btn-outline-primary px-4 py-2 shadow-sm">
+                        <i class="fa fa-home me-2"></i> Ana Sayfa
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

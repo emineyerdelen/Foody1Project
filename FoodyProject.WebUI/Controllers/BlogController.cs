@@ -80,6 +80,22 @@ namespace FoodyProject.WebUI.Controllers
             }
             return View();
         }
-        
+
+
+        public async Task<IActionResult> BlogReadAll(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:44333/api/Blog/{id}");
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<ResultBlogDto>(jsonData);
+                return View(values);
+            }
+            return View();
+
+     
+        }
     }
 }

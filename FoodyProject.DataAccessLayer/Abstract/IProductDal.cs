@@ -10,5 +10,11 @@ namespace FoodyProject.DataAccessLayer.Abstract
     public interface IProductDal:IGenericDal<Product>
     {
         List<Product> GetProductsWithCategories();
+        int ProductCount();
+        int ProductCountByCategoryNameSebze();
+        int ProductCountByCategoryNameMeyve();
+        decimal ProductPriceAvg();
+        string ProductNameByMaxPrice();
+        string ProductNameByMinPrice();
     }
 }

@@ -4,10 +4,22 @@ using FoodyProject.DataAccessLayer.Abstract;
 using FoodyProject.DataAccessLayer.Concrete;
 using FoodyProject.DataAccessLayer.EntityFramework;
 using FoodyProject.EntityLayer.Entities;
+using FoodyProject.WebApi.Hubs;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(opt =>
+    {
+        opt.AddPolicy("CorsPolicy", builder =>
+        {
+            builder.AllowAnyHeader()
+            .AllowAnyMethod()
+            .SetIsOriginAllowed((host) => true)
+            .AllowCredentials();
+        });
+});
 
+builder.Services.AddSignalR();
 // Add services to the container.
 
 builder.Services.AddDbContext<FoodyContext>();
@@ -40,10 +52,22 @@ builder.Services.AddScoped<IStaffDal, EfStaffDal>();
 builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();
 
+builder.Services.AddScoped<IOrderService, OrderManager>();
+builder.Services.AddScoped<IOrderDal, EfOrderDal>();
+
+builder.Services.AddScoped<IOrderDetailService, OrderDetailManager>();
+builder.Services.AddScoped<IOrderDetailDal, EfOrderDetailDal>();
+
+
+builder.Services.AddScoped<INotificationService, NotificationManager>();
+builder.Services.AddScoped<INotificationDal, EfNotificationDal>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
 
 var app = builder.Build();
 
@@ -57,6 +81,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("CorsPolicy");
+app.MapHub<SignalRHub>("/signalrhub");
 
 app.MapControllers();
 

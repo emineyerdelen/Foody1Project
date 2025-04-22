@@ -112,5 +112,31 @@ namespace FoodyProject.WebUI.Controllers
             }
             return View(); 
         }
+
+        public async Task<IActionResult> IndexP(string category = "Tümü")
+        {
+            using var client = new HttpClient();
+            var response = await client.GetAsync($"https://localhost:44333/api/Product/ProductListWithCategory?category={category}");
+            var jsonData = await response.Content.ReadAsStringAsync();
+            var products = JsonConvert.DeserializeObject<List<ResultProductWithCategoryDto>>(jsonData);
+            ViewBag.CurrentCategory = category;
+            return View(products);
+        }
+
+
+
+        public async Task<IActionResult> ProductDetails(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:44333/api/Product/{id}");
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<ResultProductDto>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
     }
 }

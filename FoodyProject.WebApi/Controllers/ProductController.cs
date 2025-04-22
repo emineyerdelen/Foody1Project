@@ -28,11 +28,75 @@ namespace FoodyProject.WebApi.Controllers
             return Ok(value);
         }
 
+
+        [HttpGet("ProductCount")]
+        public IActionResult ProductCount()
+        {
+            return Ok(_productService.TProductCount());
+        }
+
+        [HttpGet("ProductCountByCategoryNameSebze")]
+        public IActionResult ProductCountByCategoryNameSebze()
+        {
+            return Ok(_productService.TProductCountByCategoryNameSebze());
+        }
+
+        [HttpGet("ProductCountByCategoryNameMeyve")]
+        public IActionResult ProductCountByCategoryNameMeyve()
+        {
+            return Ok(_productService.TProductCountByCategoryNameMeyve());
+        }
+
+        [HttpGet("ProductPriceAvg")]
+        public IActionResult ProductPriceAvg()
+        {
+            return Ok(_productService.TProductPriceAvg());
+        }
+        [HttpGet("ProductNameByMaxPrice")]
+        public IActionResult ProductNameByMaxPrice()
+        {
+            return Ok(_productService.TProductNameByMaxPrice());
+        }
+        [HttpGet("ProductNameByMinPrice")]
+        public IActionResult ProductNameByMinPrice()
+        {
+            return Ok(_productService.TProductNameByMinPrice());
+        }
+
+        ////[HttpGet("ProductListWithCategory")]
+        ////public IActionResult ProductListWithCategory(int id)
+        ////{
+        ////    var context = new FoodyContext();
+        ////    var values = context.Products
+        ////        .Include(x => x.Category)
+        ////        .Where(x => x.Category.CategoryID == id)
+        ////        .Select(y => new ResultProductWithCategoryDto
+        ////        {
+        ////            Description = y.Description,
+        ////            ImageUrl = y.ImageUrl,
+        ////            Price = y.Price,
+        ////            ProductID = y.ProductID,
+        ////            ProductName = y.ProductName,
+        ////            ProductStatus = y.ProductStatus,
+        ////            CategoryName = y.Category.CategoryName,
+        ////        })
+        ////        .ToList();
+
+        ////    return Ok(values);
+        ////}
         [HttpGet("ProductListWithCategory")]
-        public IActionResult ProductListWithCategory()
+        public IActionResult ProductListWithCategory(string category)
         {
             var context = new FoodyContext();
-            var values = context.Products.Include(x => x.Category).Select(y => new ResultProductWithCategoryDto
+
+            var query = context.Products.Include(x => x.Category).AsQueryable();
+
+            if (!string.IsNullOrEmpty(category) && category != "Tümü")
+            {
+                query = query.Where(x => x.Category.CategoryName == category);
+            }
+
+            var values = query.Select(y => new ResultProductWithCategoryDto
             {
                 Description = y.Description,
                 ImageUrl = y.ImageUrl,
@@ -41,10 +105,12 @@ namespace FoodyProject.WebApi.Controllers
                 ProductName = y.ProductName,
                 ProductStatus = y.ProductStatus,
                 CategoryName = y.Category.CategoryName,
-            });
-            return Ok(values.ToList());
+            }).ToList();
 
+            return Ok(values);
         }
+
+
 
         [HttpPost]
         public IActionResult CreateProduct(CreateProductDto createProductDto)

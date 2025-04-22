@@ -1,0 +1,66 @@
+﻿@* @model ResultBlogDto
+@{
+    ViewData["Title"] = "CreateBlog";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+
+
+
+<div class="container mt-5">
+    <h1>@Model.BlogTitle</h1>
+    <img class="img-fluid my-3" src="@Model.BlogImageUrl" alt="Blog Resmi">
+    <p class="lead">@Model.BlogContent</p>
+    <div class="text-muted border-top pt-4">
+        <small><i class="fa fa-user text-primary me-2"></i>@Model.BlogAuthor</small>
+        <small class="ms-3"><i class="fa fa-calendar text-primary me-2"></i>@Model.BlogDate</small>
+    </div>
+    <a asp-action="Index" class="btn btn-primary mt-3">Geri Dön</a>
+</div> *@
+
+@model ResultBlogDto
+@{
+    ViewData["Title"] = Model.BlogTitle;
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card shadow-lg border-0 p-5">
+
+                <!-- Blog Başlık -->
+                <h1 class="text-center text-dark fw-bold mb-4">@Model.BlogTitle</h1>
+
+                <!-- Blog Resmi -->
+                <div class="text-center">
+                    <img src="@Model.BlogImageUrl" class="img-fluid rounded shadow-sm mb-4"
+                         alt="Blog Resmi" style="max-width: 60%; height: auto;">
+                </div>
+
+                <!-- Blog İçeriği -->
+                <p class="fs-5" style="line-height: 1.8; color: #333; text-align: justify;">
+                    @Model.BlogContent
+                </p>
+
+                <!-- Blog Bilgileri (Yazar ve Tarih) -->
+                <div class="d-flex justify-content-between border-top pt-3 mt-4">
+                    <span class="text-muted">
+                        <i class="fa fa-user text-primary me-2"></i>@Model.BlogAuthor
+                    </span>
+                    <span class="text-muted">
+                        <i class="fa fa-calendar text-primary me-2"></i>@Model.BlogDate.ToString("dd MMM yyyy")
+                    </span>
+                </div>
+
+                <!-- Ana Sayfa Butonu -->
+                <div class="text-center mt-4">
+                    <a asp-controller="Default" asp-action="Index" class="btn btn-lg btn-outline-primary px-4 py-2 shadow-sm">
+                        <i class="fa fa-home me-2" ></i> Ana Sayfa
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

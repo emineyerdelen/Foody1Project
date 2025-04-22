@@ -15,7 +15,8 @@
                 <p><i class="fa fa-check text-primary me-3"></i>Doğal ve Katkısız Ürünler</p>
                 <p><i class="fa fa-check text-primary me-3"></i>Doğadan Sofranıza Organik Lezzetler</p>
                 <p><i class="fa fa-check text-primary me-3"></i>Vitamin ve Mineral Bakımından Zengin Ürünler</p>
-                <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="/About/Index/">Devamını Oku</a>
+                    <a asp-controller="About" asp-action="AboutReadAll" asp-route-id="@item.AboutID" class="btn btn-primary">Devamını Oku...</a>
+               
             </div>
         </div>
     </div>

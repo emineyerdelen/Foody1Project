@@ -5,6 +5,7 @@ using FoodyProject.DtoLayer.CategoryDto;
 using FoodyProject.EntityLayer.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 using System.Reflection;
 
 namespace FoodyProject.WebApi.Controllers
@@ -33,9 +34,9 @@ namespace FoodyProject.WebApi.Controllers
         {
             _aboutService.TAdd(new About()
             {
-              Description=createAboutDto.Description,
-              Title=createAboutDto.Title,
-              ImageUrl=createAboutDto.ImageUrl
+                Description = createAboutDto.Description,
+                Title = createAboutDto.Title,
+                ImageUrl = createAboutDto.ImageUrl
             });
             return Ok("Hakkında Eklendi");
         }
@@ -59,10 +60,10 @@ namespace FoodyProject.WebApi.Controllers
         {
             _aboutService.TUpdate(new About()
             {
-                AboutID=updateAboutDto.AboutID,
-                Description=updateAboutDto.Description,
-                ImageUrl=updateAboutDto.ImageUrl,
-                Title=updateAboutDto.Title
+                AboutID = updateAboutDto.AboutID,
+                Description = updateAboutDto.Description,
+                ImageUrl = updateAboutDto.ImageUrl,
+                Title = updateAboutDto.Title
             });
             return Ok("Hakkında Güncellendi");
         }
