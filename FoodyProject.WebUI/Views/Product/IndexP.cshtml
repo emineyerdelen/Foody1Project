@@ -1,4 +1,4 @@
-﻿@model List<GetProductDto>
+﻿@model List<ResultProductDto>
 @{
     ViewData["Title"] = "IndexP";
     Layout = "~/Views/UILayout/Index.cshtml";
@@ -12,7 +12,8 @@
 
     <div class="d-flex flex-nowrap overflow-auto mb-4 pb-2">
         <a class="btn btn-outline-success me-2 @(currentCategory == "Tümü" ? "active" : "")" href="?category=Tümü">Tümü</a>
-        <a class="btn btn-outline-success me-2 @(currentCategory == "Meyve" ? "active" : "")" href="?category=Meyve">Meyve</a>
+        <a class="btn btn-outline-success me-2 @(currentCategory == "Meyve" ? "active" : "")"
+           href="/Product/IndexP?category=Meyve">Meyve</a>
         <a class="btn btn-outline-success me-2 @(currentCategory == "Sebze" ? "active" : "")" href="?category=Sebze">Sebze</a>
         <a class="btn btn-outline-success me-2 @(currentCategory == "Organik Gıdalar" ? "active" : "")" href="?category=Organik Gıdalar">Organik Gıdalar</a>
         <a class="btn btn-outline-success me-2 @(currentCategory == "Doğal Bakım Ürünleri" ? "active" : "")" href="?category=Doğal Bakım Ürünleri">Doğal Bakım Ürünleri</a>

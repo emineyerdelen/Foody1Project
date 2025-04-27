@@ -115,12 +115,17 @@ namespace FoodyProject.WebUI.Controllers
 
         public async Task<IActionResult> IndexP(string category = "Tümü")
         {
-            using var client = new HttpClient();
+            var client = _httpClientFactory.CreateClient();
             var response = await client.GetAsync($"https://localhost:44333/api/Product/ProductListWithCategory?category={category}");
-            var jsonData = await response.Content.ReadAsStringAsync();
-            var products = JsonConvert.DeserializeObject<List<ResultProductWithCategoryDto>>(jsonData);
-            ViewBag.CurrentCategory = category;
-            return View(products);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonData = await response.Content.ReadAsStringAsync();
+                var products = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData); // ResultProductWithCategoryDto yerine ResultProductDto
+                ViewBag.CurrentCategory = category;
+                return View(products);
+            }
+            return View(new List<ResultProductDto>());
         }
 
 

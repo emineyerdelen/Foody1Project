@@ -9,5 +9,6 @@ namespace FoodyProject.BusinessLayer.Abstract
 {
    public interface INotificationService: IGenericService<Notification>
     {
+        int TNotificationCountByStatusFalse();
     }
 }

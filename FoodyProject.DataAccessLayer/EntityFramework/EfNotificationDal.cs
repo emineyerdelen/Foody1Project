@@ -16,5 +16,11 @@ namespace FoodyProject.DataAccessLayer.EntityFramework
         {
 
         }
+
+        public int NotificationCountByStatusFalse()
+        {
+            using var context = new FoodyContext();
+            return context.Notifications.Where(x=>x.Status == false).Count();
+        }
     }
 }
